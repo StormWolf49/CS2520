@@ -11,7 +11,8 @@ company = input("Enter the company you wish to work: ")
 #Stores the user input of their salary in the salary variable after converting it into an float.
 salary = float(input("Enter the annual salary you wish to earn in dollars: "))
 
-#Prints out the stored data in a set of formatted print statements, including diving the annual salary by 12 to get the monthly salary and then rounding it to 2 decimal points.
+#Prints out the stored data in a set of formatted print statements, including dividing the annual 
+#salary by 12 to get the monthly salary and then rounding it to 2 decimal points.
 print("Hello!")
 print(f"My name is {name}, my age is {age}")
 print(f"I hope to work for {company} and earn ${round(salary / 12, 2)} a month.")
