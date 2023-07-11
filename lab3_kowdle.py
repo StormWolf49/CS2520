@@ -59,13 +59,13 @@ Do you want to play again?(Yes or No) No
 #Takes the user input of the count and total, and either prints 0 as the average if the count is 0, or divides the total by the count.
 count = int(input("Please enter the number of items purchased "))
 total = float(input("Please enter the total cost "))
-print("Average =", 0 if count == 0 else total/count ) #place a conditional expression inside
+print("Average =", 0 if count == 0 else round(total/count, 2)) #place a conditional expression inside
 
 '''
 Test 1
 Please enter the number of items purchased 13
 Please enter the total cost 35.2
-Average = 2.707692307692308
+Average = 2.71
 
 Test 2
 Please enter the number of items purchased 0
@@ -96,9 +96,9 @@ seed = random.choice(letters)
 #Asks the user for the sentence that will be searched for the seed letter chosen previously.
 sentence = input("Please provide the sentence to search: ")
 #Loops through the sentence looking for the letter.
-for e in range(0, len(sentence)) :
+for e in sentence :
     #At the first instance of the letter found, break the loop and print out the letter saying it was found and the sentence.
-    if sentence[e] == seed :
+    if e == seed :
         print(f"Letter {seed} found in {sentence}")
         break
 #Print out the letter saying it was not found and the sentence.
