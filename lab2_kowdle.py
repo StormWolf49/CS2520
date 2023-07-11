@@ -1,6 +1,6 @@
 #Name: Nikhil Kowdle
 #Lab 2
-#This program contains the 3 tasks required for this assignment.
+#This program contains the 4 tasks required for this assignment.
 
 #Task 1
 #Stores the user input of how many apples in the apples variable after converting it into an integer.
