@@ -59,7 +59,7 @@ def main():
     spiral()
     bloom()
     canvas = t.getscreen().getcanvas()
-    canvas.postscript(file="lab5_image.ps")
+    canvas.postscript(file="lab5_circle.ps")
 
     
 main()
