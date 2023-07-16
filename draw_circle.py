@@ -3,7 +3,8 @@
 #Circle drawing
 
 import turtle
-from tkinter import * 
+from tkinter import *
+from PIL import Image
 t = turtle.Turtle()
 t.speed(0)
 colors = ['hot pink', 'sky blue', 'medium purple']
@@ -59,7 +60,9 @@ def main():
     spiral()
     bloom()
     canvas = t.getscreen().getcanvas()
-    canvas.postscript(file="lab5_circle.ps")
+    canvas.postscript(file="foo.ps")
+    psimage = Image.open("foo.ps")
+    psimage.save("bar.jpg")
 
     
 main()
