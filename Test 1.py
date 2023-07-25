@@ -36,7 +36,7 @@ def loop():
     n = int(input("Please enter a positive integer: "))
     while n > 0:        
         result = 0
-        for i in range(n):
+        for i in range(1, n):
             result += (i + 1) ** 2
         print(result)
         n = int(input("Please enter a positive integer: "))

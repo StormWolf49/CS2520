@@ -15,7 +15,7 @@ def L1():
 #Creates List 2 by taking an integer and creating a list of that length filled with random floats from the 1 to 10 range.
 def L2():
     import random
-    n = int(input("Please enter a positive integer: "))
+    n = int(input("Please enter the size the list as a positive integer: "))
     list = [round(random.uniform(1, 10), 2) for _ in range(n)]
     print(list)
 
