@@ -27,12 +27,19 @@ except FileNotFoundError :
 except : #catch-all handler
     retval = "An unkown error has occured"
 else :
-    print("sup")
+    if retval == "" :
+        datalist.sort()
+        high = datalist[0]
+        datalist.reverse()
+        low = datalist[0]
+        sum = 0
+        for n in datalist :
+            sum += n
+        avg = sum / len(datalist)
+        retval = f"Highest: {high}; Lowest: {low}; Mean: {round(avg, 2)}"
     #no wrong data items nor other errors, so calculate the highest etc.
 finally :
     if check :
-        print(namelist)
-        print(datalist)
         myFile.close()
     print(retval)
     #close the file
