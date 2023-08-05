@@ -41,8 +41,8 @@ def generateKey(text, key):
             key.append(key[i % len(key)])
     return("" . join(key))
 
-#Vignere Encrypt
-def vignereE(text, key):
+#Vigenere Encrypt
+def vigenereE(text, key):
     key = list(key)
     if len(text) == len(key):
         return(key)
@@ -58,8 +58,8 @@ def vignereE(text, key):
         cipher_text.append(chr(x))
     return("" . join(cipher_text))
      
-#Vignere Decrypt
-def vignereD(cipher_text, key):
+#Vigenere Decrypt
+def vigenereD(cipher_text, key):
     key = list(key)
     if len(cipher_text) == len(key):
         return(key)
@@ -194,8 +194,8 @@ def user():
                         print (f"De-Ciphered: {caesarD(text,key)}")
                 print("")
             case 2:
-                #Vignere
-                print("Vignere Cipher:")
+                #Vigenere
+                print("Vigenere Cipher:")
                 text = input("Text to be encrypted/decrypted: ")
                 key = input("Enter encryption key: ")
                 c = int(input("(1)Encrypt or (2)Decrypt: "))
@@ -263,8 +263,8 @@ def main():
     print (f"De-Ciphered: {caesarD(caesarE(text,s),s)}")
     print("")
 
-    #Vignere
-    print("Vignere Cipher:")
+    #Vigenere
+    print("Vigenere Cipher:")
     text = "AMAZING"
     print (f"Text: {text}")
     key = "SUP"
