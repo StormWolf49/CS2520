@@ -184,7 +184,7 @@ def user():
                 print("Caesar Cipher:")
                 text = input("Text to be encrypted/decrypted: ")
                 key = int(input("Enter encryption key: "))
-                c = int(input("(1)Encrypt or (2)Decrypt"))
+                c = int(input("(1)Encrypt or (2)Decrypt: "))
                 print (f"Text: {text}")
                 print (f"Shift: {str(key)}")
                 match c:
@@ -198,7 +198,7 @@ def user():
                 print("Vignere Cipher:")
                 text = input("Text to be encrypted/decrypted: ")
                 key = input("Enter encryption key: ")
-                c = int(input("(1)Encrypt or (2)Decrypt"))
+                c = int(input("(1)Encrypt or (2)Decrypt: "))
                 print (f"Text: {text}")
                 print (f"Key: {key}")
                 match c:
@@ -213,7 +213,7 @@ def user():
                 text = input("Text to be encrypted/decrypted: ")
                 K = np.matrix([[3, 3], [2, 5]])
                 Kinv = matrix_mod_inv(K, len(alphabet))
-                c = int(input("(1)Encrypt or (2)Decrypt"))
+                c = int(input("(1)Encrypt or (2)Decrypt: "))
                 print(f"Text: {text}")
                 match c:
                     case 1:
@@ -228,7 +228,7 @@ def user():
                 k1 = int(input("Enter encryption key1: "))
                 k2 = int(input("Enter encryption key2: "))
                 key = [k1, k2]
-                c = int(input("(1)Encrypt or (2)Decrypt"))
+                c = int(input("(1)Encrypt or (2)Decrypt: "))
                 print(f"Text: {text}")
                 print (f"Key: {key}")
                 match c:
@@ -241,7 +241,7 @@ def user():
                 #Atbash
                 print("Atbash Cipher:")
                 text = input("Text to be encrypted/decrypted: ")
-                c = int(input("(1)Encrypt or (2)Decrypt"))
+                c = int(input("(1)Encrypt or (2)Decrypt: "))
                 print(f"Text: {text}")
                 match c:
                     case 1:
