@@ -2,6 +2,10 @@
 #Final Project
 #Simply run the file to access the various different cipher's encyption/decryption tools.
 
+
+import numpy as np
+from egcd import egcd
+
 #Caesar Cipher Encrypt
 def caesarE(text,s):
     result = ""
@@ -73,8 +77,6 @@ def vignereD(cipher_text, key):
 
 
 #Hill Cypher
-import numpy as np
-from egcd import egcd
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 letter_to_index = dict(zip(alphabet, range(len(alphabet))))
 index_to_letter = dict(zip(range(len(alphabet)), alphabet))
