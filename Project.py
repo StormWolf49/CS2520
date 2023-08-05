@@ -77,58 +77,51 @@ def vigenereD(cipher_text, key):
 
 
 #Hill Cypher
-alphabet = "abcdefghijklmnopqrstuvwxyz"
-letter_to_index = dict(zip(alphabet, range(len(alphabet))))
-index_to_letter = dict(zip(range(len(alphabet)), alphabet))
+def create_matrix_from(key):
+    m=[[0] * 3 for i in range(3)]
+    for i in range(3):
+        for j in range(3):
+            m[i][j] = ord(key[3*i+j]) % 65
+    return m
 
-#Matrix Inverse Modulo
-def matrix_mod_inv(matrix, modulus):
-    det = int(np.round(np.linalg.det(matrix)))
-    det_inv = egcd(det, modulus)[1] % modulus
-    matrix_modulus_inv = (
-        det_inv * np.round(det * np.linalg.inv(matrix)).astype(int) % modulus
-    )
-    return matrix_modulus_inv
+def MatrixInverse(K):
+    det = int(np.linalg.det(K))
+    det_multiplicative_inverse = pow(det, -1, 26)
+    K_inv = [[0] * 3 for i in range(3)]
+    for i in range(3):
+        for j in range(3):
+            Dji = K
+            Dji = np.delete(Dji, (j), axis=0)
+            Dji = np.delete(Dji, (i), axis=1)
+            det = Dji[0][0]*Dji[1][1] - Dji[0][1]*Dji[1][0]
+            K_inv[i][j] = (det_multiplicative_inverse * pow(-1,i+j) * det) % 26
+    return K_inv
 
-#Hill Encrypt
-def hillE(text, K):
-    encrypted = ""
-    message_in_numbers = []
-    for letter in text:
-        message_in_numbers.append(letter_to_index[letter])
-    split_P = [
-        message_in_numbers[i : i + int(K.shape[0])]
-        for i in range(0, len(message_in_numbers), int(K.shape[0]))
-    ]
-    for P in split_P:
-        P = np.transpose(np.asarray(P))[:, np.newaxis]
-        while P.shape[0] != K.shape[0]:
-            P = np.append(P, letter_to_index[" "])[:, np.newaxis]
-        numbers = np.dot(K, P) % len(alphabet)
-        n = numbers.shape[0]
-        for idx in range(n):
-            number = int(numbers[idx, 0])
-            encrypted += index_to_letter[number]
-    return encrypted
+def encrypt(P, K):
+    C=[0,0,0]
+    C[0] = (K[0][0]*P[0] + K[1][0]*P[1] + K[2][0]*P[2]) % 26
+    C[1] = (K[0][1]*P[0] + K[1][1]*P[1] + K[2][1]*P[2]) % 26
+    C[2] = (K[0][2]*P[0] + K[1][2]*P[1] + K[2][2]*P[2]) % 26
+    return C
 
-#Hill Decrypt
-def hillD(cipher, Kinv):
-    decrypted = ""
-    cipher_in_numbers = []
-    for letter in cipher:
-        cipher_in_numbers.append(letter_to_index[letter])
-    split_C = [
-        cipher_in_numbers[i : i + int(Kinv.shape[0])]
-        for i in range(0, len(cipher_in_numbers), int(Kinv.shape[0]))
-    ]
-    for C in split_C:
-        C = np.transpose(np.asarray(C))[:, np.newaxis]
-        numbers = np.dot(Kinv, C) % len(alphabet)
-        n = numbers.shape[0]
-        for idx in range(n):
-            number = int(numbers[idx, 0])
-            decrypted += index_to_letter[number]
-    return decrypted
+#Hill Encrypt/Decrypt
+def hill(message, K):
+    cipher_text = []
+    #Transform the message 3 characters at a time
+    for i in range(0,len(message), 3):
+        P=[0, 0, 0]
+        #Assign the corresponfing integer value to each letter
+        for j in range(3):
+            P[j] = ord(message[i+j]) % 65
+        #Encript three letters
+        C = encrypt(P,K)
+        #Add the encripted 3 letters to the final cipher text
+        for j in range(3):
+            cipher_text.append(chr(C[j] + 65))
+        #Repeat until all sets of three letters are processed.
+        
+    #return a string
+    return "".join(cipher_text)
 
 
 #Affine Cipher
@@ -203,30 +196,32 @@ def user():
                 print (f"Key: {key}")
                 match c:
                     case 1:
-                        print (f"Cipher: {vignereE(text,key)}")
+                        print (f"Cipher: {vigenereE(text,key)}")
                     case 2:
-                        print (f"De-Ciphered: {vignereD(text, key)}")
+                        print (f"De-Ciphered: {vigenereD(text, key)}")
                 print("")
             case 3:
                 #Hill
                 print("Hill Cipher:")
-                text = input("Text to be encrypted/decrypted: ")
-                K = np.matrix([[3, 3], [2, 5]])
-                Kinv = matrix_mod_inv(K, len(alphabet))
+                text = input("Text to be encrypted/decrypted (Length of a multiple of 3, including spaces): ")
+                key = input("Enter encryption key (All caps, length of a multiple of 3, at least 9 long, including spaces): ")
+                K = create_matrix_from(key)
+                Kinv = MatrixInverse(K)
                 c = int(input("(1)Encrypt or (2)Decrypt: "))
                 print(f"Text: {text}")
+                print (f"Key: {key}")
                 match c:
                     case 1:
-                        print (f"Cipher: {hillE(text, K)}")
+                        print (f"Cipher: {hill(text, K)}")
                     case 2:
-                        print (f"De-Ciphered: {hillD(text, Kinv)}")
+                        print (f"De-Ciphered: {hill(text, Kinv)}")
                 print("")
             case 4:
                 #Affline
                 print("Affline Cipher:")
                 text = input("Text to be encrypted/decrypted: ")
-                k1 = int(input("Enter encryption key1: "))
-                k2 = int(input("Enter encryption key2: "))
+                k1 = int(input("Enter encryption key1 (Integer): "))
+                k2 = int(input("Enter encryption key2 (Integer): "))
                 key = [k1, k2]
                 c = int(input("(1)Encrypt or (2)Decrypt: "))
                 print(f"Text: {text}")
@@ -276,12 +271,14 @@ def main():
 
     #Hill
     print("Hill Cipher:")
-    text = "help"
-    K = np.matrix([[3, 3], [2, 5]])
-    Kinv = matrix_mod_inv(K, len(alphabet))
+    text = "MYSECRETMESSAGE"
     print(f"Text: {text}")
-    print(f"Cipher: {hillE(text, K)}")
-    print(f"De-Ciphered: {hillD(hillE(text, K), Kinv)}")
+    key = "RRFVSVCCT"
+    print (f"Key: {key}")
+    K = create_matrix_from(key)
+    Kinv = MatrixInverse(K) 
+    print(f"Cipher: {hill(text, K)}")
+    print(f"De-Ciphered: {hill(hill(text, K), Kinv)}")
     print("")
 
     #Affline
