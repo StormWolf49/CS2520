@@ -176,7 +176,7 @@ def user():
                 #Caesar
                 print("Caesar Cipher:")
                 text = input("Text to be encrypted/decrypted: ")
-                key = int(input("Enter encryption key: "))
+                key = int(input("Enter encryption key (Integer): "))
                 c = int(input("(1)Encrypt or (2)Decrypt: "))
                 print (f"Text: {text}")
                 print (f"Shift: {str(key)}")
@@ -190,7 +190,7 @@ def user():
                 #Vigenere
                 print("Vigenere Cipher:")
                 text = input("Text to be encrypted/decrypted: ")
-                key = input("Enter encryption key: ")
+                key = input("Enter encryption key (Integer): ")
                 c = int(input("(1)Encrypt or (2)Decrypt: "))
                 print (f"Text: {text}")
                 print (f"Key: {key}")
