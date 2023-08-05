@@ -172,7 +172,7 @@ def atbash(text):
 def user():
     print("DEMO COMPLETE")
     while True:
-        print("What do you want to do next:\n  (0) Exit\n  (1) Caesar\n  (2) Vignere\n  (3) Hill\n  (4) Affline\n  (5) Atbash")
+        print("What do you want to do next:\n  (0) Exit\n  (1) Caesar\n  (2) Vigenere\n  (3) Hill\n  (4) Affline\n  (5) Atbash")
         choice = int(input(""))
         print("")
         match choice:
@@ -269,9 +269,9 @@ def main():
     print (f"Text: {text}")
     key = "SUP"
     print (f"Key: {key}")
-    cipher_text = vignereE(text,key)
+    cipher_text = vigenereE(text,key)
     print(f"Cipher: {cipher_text}")
-    print(f"De-Ciphered: {vignereD(cipher_text, key)}")
+    print(f"De-Ciphered: {vigenereD(cipher_text, key)}")
     print("")
 
     #Hill
