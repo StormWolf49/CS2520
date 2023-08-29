@@ -2,7 +2,6 @@
 #Final Project
 #Simply run the file to access the various different cipher's encyption/decryption tools.
 
-
 import numpy as np
 from egcd import egcd
 
